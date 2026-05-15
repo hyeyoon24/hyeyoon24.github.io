@@ -1,1 +1,435 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PAPER_TITLE] - MIE 2026 Poster</title>
+    <meta name="description" content="[TAGLINE]">
+
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="[PAPER_TITLE]">
+    <meta property="og:description" content="[TAGLINE]">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="[GITHUB_PAGES_URL]">
+
+    <!-- Favicon (Inline SVG of a simple knowledge graph node) -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='20' cy='80' r='10' fill='%230B5394'/><circle cx='80' cy='80' r='10' fill='%230B5394'/><circle cx='50' cy='20' r='10' fill='%230B5394'/><line x1='26' y1='72' x2='44' y2='28' stroke='%230B5394' stroke-width='6'/><line x1='74' y1='72' x2='56' y2='28' stroke='%230B5394' stroke-width='6'/></svg>">
+
+    <!-- Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!--
+    ========================================================
+    PLACEHOLDERS TO FILL IN BEFORE DEPLOYMENT:
+    ========================================================
+    - [PAPER_TITLE]
+    - [YOUR_NAME]
+    - [COAUTHOR_1], [COAUTHOR_2], etc.
+    - [AFFILIATION_1], [AFFILIATION_2], etc.
+    - [TAGLINE]
+    - [TLDR_SENTENCE_1], [TLDR_SENTENCE_2]
+    - [CONTRIBUTION_2_TITLE], [CONTRIBUTION_2_DESC]
+    - [CONTRIBUTION_3_TITLE], [CONTRIBUTION_3_DESC]
+    - [DOI_LINK]
+    - [GITHUB_REPO_LINK] (e.g., https://github.com/[username]/korean-clinical-kg)
+    - [POSTER_PDF_LINK]
+    - [SUPP_MAT_LINK]
+    - [RELATED_WORK_LINK_1], [RELATED_WORK_LINK_2], [RELATED_WORK_LINK_3], [RELATED_WORK_LINK_4]
+    - [EMAIL]
+    - [ORCID_ID]
+    - [GOOGLE_SCHOLAR_LINK]
+    - [LINKEDIN_LINK]
+    - [GITHUB_PAGES_URL]
+    -->
+
+    <style>
+        :root {
+            /* Light theme (default) */
+            --bg-color: #ffffff;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --accent-color: #0B5394;
+            --accent-bg: #f0f7ff;
+            --border-color: #e5e7eb;
+            --card-border: #e5e7eb;
+            --card-hover-border: #93c5fd;
+            --badge-bg: #e0f2fe;
+            --badge-text: #0369a1;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                /* Dark theme */
+                --bg-color: #0f172a;
+                --text-main: #f8fafc;
+                --text-muted: #94a3b8;
+                --accent-color: #60a5fa;
+                --accent-bg: #1e293b;
+                --border-color: #334155;
+                --card-border: #334155;
+                --card-hover-border: #60a5fa;
+                --badge-bg: #1e293b;
+                --badge-text: #38bdf8;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding: 1.5rem 1rem 3rem 1rem;
+        }
+
+        main {
+            max-width: 640px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.25;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header specific styling */
+        header {
+            margin-bottom: 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .authors {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .affiliations {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* TLDR Card */
+        .tldr-card {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .tldr-card p {
+            margin-bottom: 0;
+        }
+
+        /* Lists */
+        ul {
+            list-style-type: none;
+        }
+
+        .contributions li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .contributions .icon {
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+
+        .related-work li {
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .related-work li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        /* Resources Grid */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 480px) {
+            .resources-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .resource-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .resource-card:hover {
+            border-color: var(--card-hover-border);
+            transform: translateY(-2px);
+            text-decoration: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .resource-card .icon {
+            font-size: 1.25rem;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer h2 {
+            border-bottom: none;
+            margin-top: 0;
+            padding-bottom: 0;
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Utility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: none !important;
+                color: black !important;
+                padding: 0;
+            }
+
+            .tldr-card {
+                border: 1px solid #ccc;
+                background: none !important;
+            }
+
+            a {
+                color: black !important;
+                text-decoration: none !important;
+            }
+
+            .resource-card {
+                border: 1px solid #ccc;
+                break-inside: avoid;
+            }
+
+            main {
+                max-width: 100%;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <div class="badge">MIE 2026 · Genova, Italy · Poster #693</div>
+            <h1>Automated Information Extraction Pipeline for Constructing ED Knowledge Graphs from Korean Clinical
+                Problem Lists</h1>
+            <p class="authors"><strong>Hyeyoon Moon</strong><sup>1</sup>, Eunhye Jang<sup>1</sup>,
+                Won Chul Cha<sup>1,2</sup></p>
+            <p class="affiliations"><sup>1</sup>Department of Digital Health, SAIHST, Sungkyunkwan University, Seoul,
+                Korea&nbsp;·&nbsp; <sup>2</sup>Department of Emergency Medicine, Samsung Medical Center, Seoul, Korea
+            </p>
+            <p class="tagline">[TAGLINE]</p>
+        </header>
+
+        <section class="tldr" aria-labelledby="tldr-heading">
+            <h2 id="tldr-heading" class="sr-only">TL;DR</h2>
+            <div class="tldr-card">
+                <p><strong>TL;DR:</strong> [TLDR_SENTENCE_1] [TLDR_SENTENCE_2]</p>
+            </div>
+        </section>
+
+        <section class="contributions">
+            <h2>Key Contributions</h2>
+            <ul>
+                <li>
+                    <span class="icon" aria-hidden="true">🔹</span>
+                    <div><strong>Automated entity extraction from Korean ED notes</strong> — Combined fine-tuned BERT
+                        with zero-shot LLM for 250+ annotated records.</div>
+                </li>
+                <li>
+                    <span class="icon" aria-hidden="true">🔹</span>
+                    <div><strong>[CONTRIBUTION_2_TITLE]</strong> — [CONTRIBUTION_2_DESC]</div>
+                </li>
+                <li>
+                    <span class="icon" aria-hidden="true">🔹</span>
+                    <div><strong>[CONTRIBUTION_3_TITLE]</strong> — [CONTRIBUTION_3_DESC]</div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="resources">
+            <h2>Resources</h2>
+            <div class="resources-grid">
+                <a href="[DOI_LINK]" target="_blank" rel="noopener noreferrer" class="resource-card">
+                    <span class="icon" aria-hidden="true">📄</span>
+                    <span>Full Paper</span>
+                </a>
+                <a href="[GITHUB_REPO_LINK]" target="_blank" rel="noopener noreferrer" class="resource-card">
+                    <span class="icon" aria-hidden="true">💻</span>
+                    <span>Code &amp; Data</span>
+                </a>
+                <a href="[POSTER_PDF_LINK]" target="_blank" rel="noopener noreferrer" class="resource-card">
+                    <span class="icon" aria-hidden="true">📊</span>
+                    <span>Poster PDF</span>
+                </a>
+                <a href="[SUPP_MAT_LINK]" target="_blank" rel="noopener noreferrer" class="resource-card">
+                    <span class="icon" aria-hidden="true">🗂️</span>
+                    <span>Supplementary</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>About the Author</h2>
+            <p>Clinical ICU nurse (cardiothoracic surgery) turned digital health researcher at Sungkyunkwan University.
+                My research focuses on clinical NLP, knowledge graphs, LLM evaluation, and RAG systems for healthcare.
+            </p>
+        </section>
+
+        <section class="related-work">
+            <h2>Related Work</h2>
+            <ul>
+                <li><a href="[RELATED_WORK_LINK_1]" target="_blank" rel="noopener noreferrer">Clinical NER for Korean
+                        medical records</a> — JAMIA Open</li>
+                <li><a href="[RELATED_WORK_LINK_2]" target="_blank" rel="noopener noreferrer">AURA: AI for [brief
+                        description]</a> — AAAI-26 Social Impact Track (oral)</li>
+                <li><a href="[RELATED_WORK_LINK_3]" target="_blank" rel="noopener noreferrer">HAPES: RAG-based pediatric
+                        emergency chatbot</a></li>
+                <li><a href="[RELATED_WORK_LINK_4]" target="_blank" rel="noopener noreferrer">MedDocSynth: synthetic
+                        medical document generation</a> — JMIR (under revision)</li>
+            </ul>
+        </section>
+
+        <footer>
+            <h2>Let's Connect</h2>
+            <p>Let's chat at MIE 2026 — find me at <strong>Poster #693</strong>.</p>
+            <div class="social-links">
+                <a href="mailto:[EMAIL]" aria-label="Email">Email</a>
+                <a href="[ORCID_ID]" target="_blank" rel="noopener noreferrer" aria-label="ORCID">ORCID</a>
+                <a href="[GOOGLE_SCHOLAR_LINK]" target="_blank" rel="noopener noreferrer"
+                    aria-label="Google Scholar">Google Scholar</a>
+                <a href="[LINKEDIN_LINK]" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+                <a href="[GITHUB_REPO_LINK]" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+            </div>
+        </footer>
+    </main>
+</body>
+
+</html>
